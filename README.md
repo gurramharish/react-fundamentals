@@ -18,22 +18,48 @@ Easy to develop rich interactive web pages, with declrative and component focuse
 
 1. Inorder to pass data from one component to other component we need `props`.
 
-    ```typescript
-    <ExpenseItem
-        date={new Date(2021, 3, 22)}
-        title="Car Modification"
-        amount="1000000"
-    />;
+    ```javascript
+        <ExpenseItem
+            date={new Date(2021, 3, 22)}
+            title="Car Modification"
+            amount="1000000"
+        />;
 
-    function ExpenseItem(props) {
-        return (
-            <div className="expense-item">
-            <div>{props.date.toISOString()}</div>
-            <div className="expense-item__description">
-                <h2>{props.title}</h2>
-                <div className="expense-item__price">INR {props.amount}</div>
-            </div>
-            </div>
-        );
-    }
+        function ExpenseItem(props) {
+            return (
+                <div className="expense-item">
+                <div>{props.date.toISOString()}</div>
+                <div className="expense-item__description">
+                    <h2>{props.title}</h2>
+                    <div className="expense-item__price">INR {props.amount}</div>
+                </div>
+                </div>
+            );
+        }
+    ```
+
+## Composition using props.children
+
+1. Composition is technique is used for projecting dynamic content in the same component.
+
+Example:
+    ```javascript
+        export default function Card(props) {
+            const classes = `card ${props.className}`;
+            return (
+                <div className={classes}>
+                    {props.children}
+                </div>
+            );
+        }
+    ```
+
+    ```javascript
+        <Card className='expense-item'>
+            <ExpenseDate date={props.date}/>
+                <div className='expense-item__description'>
+                    <h2>{props.title}</h2>
+                    <div className='expense-item__price'>INR {props.amount}</div>
+                    </div>
+        </Card>
     ```
