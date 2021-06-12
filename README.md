@@ -63,3 +63,19 @@ Example:
                     </div>
         </Card>
     ```
+
+## useState hook
+
+1. useState hook is used to set the initial state in the component and provide te setter method to update the state.
+
+```javascript
+const [newExpense, setNewExpense] = useState({title: '', amount: '', date: ''});
+```
+
+1. Updating the state which depends on previous state
+
+```javascript
+setNewExpense((prevState) => {...prevState, title: 'Mobile Phone'})
+
+setNewExpense({title: '', amount: '', date: ''}) // Reset form which dont need previous state
+```

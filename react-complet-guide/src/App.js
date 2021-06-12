@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/Expenses/New/NewExpense';
@@ -25,10 +26,18 @@ const App = () => {
       date: new Date(2021, 5, 12),
     },
   ];
+  const [expenseList, addExpenseToList] = useState(expenses)
+  
+  const addExpesnse = (expense) => {
+    console.log("Expense in app.js :: ", expense);
+    addExpenseToList((prevState) => {
+      return [expense, ...prevState];
+    })
+  }
   return (
     <div>
-      <NewExpense/>
-      <Expenses expenses={expenses} />      
+      <NewExpense  onAddExpense={addExpesnse}/>
+      <Expenses expenses={expenseList}/>      
     </div>
   );
 }
